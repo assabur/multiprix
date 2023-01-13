@@ -11,8 +11,8 @@ pip.packages(["tornado", "pytest-playwright"])
 server.shell(["playwright install"])
 
 # COPY FILES
-files.put("server", "server")
-files.put("scrap", "scrap")
+files.rsync("server", "/root/server")
+files.rsync("scrap", "scrap")
 
 # SCHEDULE SCRAP
 server.crontab(
