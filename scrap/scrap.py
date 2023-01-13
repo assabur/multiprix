@@ -1,4 +1,4 @@
-from scrappers.orange import orange
+from orange import orange
 import clickhouse_driver
 import json
 

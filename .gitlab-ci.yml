@@ -1,7 +1,18 @@
+image: python:latest
+
 before_script:
+  - python --version
+  - pip install pyinfra
   - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
+
+deploy:
+  stage: deploy
+  environment: production
+  script:
+    - cd infra
+    - pyinfra inventory.py deploy.py
 

@@ -9,7 +9,7 @@ ch = clickhouse_driver.Client("localhost")
 def get_data():
     return {
         "orange": ch.query_dataframe(
-            "select JSONExtractInt(data, 'prix') as prix from orange"
+            "select JSONExtractInt(data, 'prix') as prix,datetime from orange"
         ).to_html()
     }
 
