@@ -1,5 +1,5 @@
 [Unit]
-Description=Iliad DataX Backend
+Description=MultiPrix Service
 After=nginx.service
  
 [Service]
