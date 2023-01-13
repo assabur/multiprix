@@ -1,0 +1,13 @@
+[Unit]
+Description=Iliad DataX Backend
+After=nginx.service
+ 
+[Service]
+Type=simple
+WorkingDirectory=/root/server/
+ExecStart=/usr/bin/python3 server.py
+Restart=on-failure
+TimeoutStopSec=300
+ 
+[Install]
+WantedBy=multi-user.target
