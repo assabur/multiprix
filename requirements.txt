@@ -1,2 +1,5 @@
 tornado
-clickhouse-client
+clickhouse-driver
+pandas
+tabulate
+pytest-playwright

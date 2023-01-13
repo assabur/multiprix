@@ -4,11 +4,20 @@ from pathlib import Path
 # INSTALLS
 apt.key(keyserver="hkp://keyserver.ubuntu.com:80", keyid="8919F6BD2B48D754")
 add_apt_repo = apt.repo(src="deb https://packages.clickhouse.com/deb stable main")
+
 apt.packages(
     packages=["clickhouse-server", "clickhouse-client", "nginx", "python3-pip"]
 )
-pip.packages(["tornado", "pytest-playwright"])
-server.shell(["playwright install"])
+pip.packages(
+    packages=[
+        "tornado",
+        "clickhouse-driver",
+        "pandas",
+        "tabulate",
+        "pytest-playwright",
+    ]
+)
+server.shell(["playwright install", "playwright install-deps"])
 
 # COPY FILES
 files.sync("../server", "/root/server")
@@ -24,6 +33,7 @@ server.crontab(
 sd = files.put(Path(__file__).parent / "mpserver.service", "/etc/systemd/system/")
 systemd.service("mpserver", running=True, enabled=True, restarted=True)
 
-#NGINX
+# NGINX
 nginconf = files.put(Path(__file__).parent / "nginx.conf", "/etc/nginx/")
-
+server.shell("nginx -t")
+server.shell("nginx -s reload")
