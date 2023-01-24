@@ -7,8 +7,10 @@
 </head>
 
 <body>
-    <h1>Orange</h1>
-    {% raw (data["orange"]) %}
+    {% for provider in data %}
+        <h1>{{provider}}</h1>
+        {% raw (data[provider]) %}
+    {% end for %}
 </body>
 
 </html>

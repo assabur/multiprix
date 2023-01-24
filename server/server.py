@@ -10,7 +10,10 @@ def get_data():
     return {
         "orange": ch.query_dataframe(
             "select JSONExtractInt(data, 'prix') as prix,datetime from orange"
-        ).to_html()
+        ).to_html(),
+        "sosh": ch.query_dataframe(
+            "select JSONExtractInt(data, 'prix') as prix,datetime from sosh"
+        ).to_html(),
     }
 
 
