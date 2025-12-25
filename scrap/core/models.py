@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Offer:
-    """Represents a scraped offer in a normalized shape."""
+    """Represets a scraped offer in a normalized shape."""
 
     offre: str
     prix: int
