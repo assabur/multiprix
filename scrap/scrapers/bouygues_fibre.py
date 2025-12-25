@@ -9,9 +9,9 @@ from core.scraper import BaseOfferScraper
 
 
 
-class OrangeFibreScraper(BaseOfferScraper):
-    name = "orange"
-    table_name = "orange"
+class BouyguesFibreScraper(BaseOfferScraper):
+    name = "bougues"
+    table_name = "bouygues"
 
     def scrape(self) -> list[Offer]:
         session = self._session_factory()
@@ -20,17 +20,18 @@ class OrangeFibreScraper(BaseOfferScraper):
             offers: list[Offer] = []
             for index in (1, 2, 3):
                 prix_promo = session.text(
-                    f"//div[{index}]/section/div/div[1]/div[2]/div/p/span[1]"
+                    f"/html/body/main/section[1]/div/div/div[5]/div/div[1]/div/div/div/div/div/div[{index}]/div/div/div/div"
+
                 )
                 debit = session.text(
-                    f"//div[{index}]/section/div/div[1]/div[1]/div/div[4]/div[1]/p/span"
+                    f"/html/body/main/section[1]/div/div/div[5]/div/div[1]/div/div/div/div/div/div[{index}]/div/div/div/div/div/div[1]/div/p"
                 )
                 prix = session.text(
-                    f"//div[{index}]/section/div/div[1]/div[2]/div/p/span[3]/span[2]"
+                   f"/html/body/main/section[1]/div/div/div[5]/div/div[1]/div/div/div/div/div/div[{index}]/div/div/div/div/div/div[4]/div/div/span[1]/span[1]"
                 )
                 offers.append(
                     Offer(
-                        offre=f"fibre {index} orange",
+                        offre=f"fibre {index} bouygues",
                         prix=parse_price_to_int(prix),
                         prix_promo=parse_price_to_int(prix_promo),
                         debit=debit,

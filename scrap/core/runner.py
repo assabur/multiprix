@@ -19,7 +19,7 @@ class OfferRepository(Protocol):
 class ScrapeRunner:
     """Coordinates scraper execution and storage."""
 
-    def i__init__(self, scrapers: Iterable[BaseOfferScraper], repository: OfferRepository) -> None:
+    def __init__(self, scrapers: Iterable[BaseOfferScraper], repository: OfferRepository) -> None:
         self._scrapers = list(scrapers)
         self._repository = repository
 
