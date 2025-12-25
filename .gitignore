@@ -2,3 +2,20 @@ id_rsa
 id_rsa.pub
 provision.sh
 clickhouse
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyc
+*.pyd
+.Python
+.venv/
+venv/
+
+
+
+
+
+# OS
+
