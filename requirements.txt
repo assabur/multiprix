@@ -1,3 +1,4 @@
+pyinfra
 tornado
 clickhouse-driver
 pandas

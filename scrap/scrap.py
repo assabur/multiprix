@@ -1,35 +1,7 @@
-from orange import orange
-from sosh import sosh
-import clickhouse_driver
-import json
+"""Entrypoint script for scraping all operators."""
 
-ch = clickhouse_driver.Client("localhost")
+from app import run
 
-##Orange
-ch.execute(
-    """--sql
-CREATE TABLE IF NOT EXISTS orange (
-    datetime DateTime default now(),
-    data String
-)
-ENGINE=MergeTree
-ORDER BY datetime
-"""
-)
 
-ch.execute("insert into orange(data) values", [[json.dumps(o)] for o in orange()])
-## Sosh
-ch.execute(
-    """--sql
-CREATE TABLE IF NOT EXISTS sosh (
-    datetime DateTime default now(),
-    data String
-)
-ENGINE=MergeTree
-ORDER BY datetime
-"""
-)
-
-ch.execute(
-    "insert into sosh(data) values", [[json.dumps(s)] for s in sosh()]
-)
+if __name__ == "__main__":
+    run()

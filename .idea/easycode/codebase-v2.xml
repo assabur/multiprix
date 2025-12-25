@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/infra/deploy.py;/Users/popylamerveille/PycharmProjects/multiprix/infra/inventory.py;/Users/popylamerveille/PycharmProjects/multiprix/infra/test.py;/Users/popylamerveille/PycharmProjects/multiprix/scrap/orange.py;/Users/popylamerveille/PycharmProjects/multiprix/scrap/scrap.py;/Users/popylamerveille/PycharmProjects/multiprix/scrap/sosh.py;/Users/popylamerveille/PycharmProjects/multiprix/server/index.template.html;/Users/popylamerveille/PycharmProjects/multiprix/server/server.py;/Users/popylamerveille/PycharmProjects/multiprix/README.md" />
+  </component>
+</project>
