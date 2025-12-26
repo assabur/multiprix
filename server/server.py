@@ -14,6 +14,9 @@ def get_data():
         "sosh": ch.query_dataframe(
             "select JSONExtractInt(data, 'prix') as prix,datetime from sosh"
         ).to_html(),
+        "bouygues": ch.query_dataframe(
+            "select JSONExtractInt(data, 'prix') as prix,datetime from bouygues"
+        ).to_html(),
     }
 
 

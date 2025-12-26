@@ -10,7 +10,7 @@ from core.scraper import BaseOfferScraper
 
 
 class BouyguesFibreScraper(BaseOfferScraper):
-    name = "bougues"
+    name = "bouygues"
     table_name = "bouygues"
 
     def scrape(self) -> list[Offer]:
