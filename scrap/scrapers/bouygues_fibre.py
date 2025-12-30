@@ -1,4 +1,4 @@
-"""Scraper dédié au réseau Orange et ses offres."""
+"""Scraper dédié au réseau Bouygues et ses offres."""
 
 from __future__ import annotations
 
@@ -16,18 +16,17 @@ class BouyguesFibreScraper(BaseOfferScraper):
     def scrape(self) -> list[Offer]:
         session = self._session_factory()
         try:
-            session.open("https://www.bouyguestelecom.fr/forfaits-mobiles/avec-engagement")
+            session.open("https://www.bouyguestelecom.fr/offres-internet")
             offers: list[Offer] = []
             for index in (1, 2, 3):
                 prix_promo = session.text(
-                    f"/html/body/main/section[1]/div/div/div[5]/div/div[1]/div/div/div/div/div/div[{index}]/div/div/div/div"
-
+                    f"//div[{index}]/section/div/div[1]/div[2]/div/p/span[1]"
                 )
                 debit = session.text(
-                    f"/html/body/main/section[1]/div/div/div[5]/div/div[1]/div/div/div/div/div/div[{index}]/div/div/div/div/div/div[1]/div/p"
+                    f"//div[{index}]/section/div/div[1]/div[1]/div/div[4]/div[1]/p/span"
                 )
                 prix = session.text(
-                   f"/html/body/main/section[1]/div/div/div[5]/div/div[1]/div/div/div/div/div/div[{index}]/div/div/div/div/div/div[4]/div/div/span[1]/span[1]"
+                    f"//div[{index}]/section/div/div[1]/div[2]/div/p/span[3]/span[2]"
                 )
                 offers.append(
                     Offer(

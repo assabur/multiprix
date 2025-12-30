@@ -16,7 +16,7 @@ class OrangeFibreScraper(BaseOfferScraper):
     def scrape(self) -> list[Offer]:
         session = self._session_factory()
         try:
-            session.open("https://www.bouyguestelecom.fr/forfaits-mobiles/avec-engagement")
+            session.open("https://boutique.orange.fr/internet/offres-fibre")
             offers: list[Offer] = []
             for index in (1, 2, 3):
                 prix_promo = session.text(

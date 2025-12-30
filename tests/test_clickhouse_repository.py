@@ -1,6 +1,7 @@
 import os
 import uuid
 
+import os
 import pytest
 
 from core.models import Offer
@@ -16,7 +17,11 @@ def test_clickhouse_repository_roundtrip() -> None:
         pytest.skip("CLICKHOUSE_HOST is not set")
 
     clickhouse_driver = pytest.importorskip("clickhouse_driver")
-    client = clickhouse_driver.Client(host)
+    client = clickhouse_driver.Client(
+        host,
+        user=os.getenv("CLICKHOUSE_USER", "default"),
+        password=os.getenv("CLICKHOUSE_PASSWORD", ""),
+    )
     table_name = f"test_offers_{uuid.uuid4().hex}"
     repository = ClickhouseOfferRepository(host=host)
 

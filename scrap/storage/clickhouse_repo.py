@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from typing import Iterable
 
 import clickhouse_driver
@@ -13,8 +14,17 @@ from core.models import Offer
 class ClickhouseOfferRepository:
     """Stores offers in ClickHouse with a simple schema."""
 
-    def __init__(self, host: str = "localhost") -> None:
-        self._client = clickhouse_driver.Client(host)
+    def __init__(
+        self,
+        host: str = "localhost",
+        user: str | None = None,
+        password: str | None = None,
+    ) -> None:
+        ch_user = user or os.getenv("CLICKHOUSE_USER", "default")
+        ch_password = (
+            password if password is not None else os.getenv("CLICKHOUSE_PASSWORD", "")
+        )
+        self._client = clickhouse_driver.Client(host, user=ch_user, password=ch_password)
 
     def ensure_table(self, table_name: str) -> None:
         self._client.execute(

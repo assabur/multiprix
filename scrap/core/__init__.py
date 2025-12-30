@@ -1,4 +1,4 @@
-"""Definitions core partagees."""
+"""Definitions des differents modules."""
 
 from .models import Offer
 from .parsing import parse_price_to_int

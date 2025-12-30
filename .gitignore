@@ -2,6 +2,7 @@ id_rsa
 id_rsa.pub
 provision.sh
 clickhouse
+.env
 
 # Python
 __pycache__/
@@ -18,4 +19,3 @@ venv/
 
 
 # OS
-

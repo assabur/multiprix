@@ -1,9 +1,14 @@
 import asyncio
+import os
 import tornado.web
 import clickhouse_driver
 import pandas, tabulate
 
-ch = clickhouse_driver.Client("localhost")
+ch = clickhouse_driver.Client(
+    os.getenv("CLICKHOUSE_HOST", "localhost"),
+    user=os.getenv("CLICKHOUSE_USER", "default"),
+    password=os.getenv("CLICKHOUSE_PASSWORD", ""),
+)
 
 
 def get_data():
