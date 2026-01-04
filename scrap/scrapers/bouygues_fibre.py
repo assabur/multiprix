@@ -35,7 +35,7 @@ class BouyguesFibreScraper(BaseOfferScraper):
                 )
                 offers.append(
                     Offer(
-                        offre=f"fibre {index} bouygues",
+                        offre=f"offre {index} bouygues",
                         prix=parse_price_to_int(prix),
                         prix_promo=parse_price_to_int(prix_promo),
                         debit=debit,
