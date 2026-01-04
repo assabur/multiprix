@@ -8,3 +8,4 @@ def test_parse_price_to_int_handles_comma() -> None:
 
 def test_parse_price_to_int_handles_spaces() -> None:
     assert parse_price_to_int("  45,00   ") == 4500
+
