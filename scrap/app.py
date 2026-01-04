@@ -17,8 +17,8 @@ def run() -> None:
         password=os.getenv("CLICKHOUSE_PASSWORD", ""),
     )
     scrapers = [
-        OrangeFibreScraper(playwright_session_factory),
-        SoshFibreScraper(playwright_session_factory),
+        #OrangeFibreScraper(playwright_session_factory),
+        #SoshFibreScraper(playwright_session_factory),
         BouyguesFibreScraper(playwright_session_factory)
     ]
     ScrapeRunner(scrapers, repository).run()

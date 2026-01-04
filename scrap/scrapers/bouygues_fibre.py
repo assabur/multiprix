@@ -16,17 +16,22 @@ class BouyguesFibreScraper(BaseOfferScraper):
     def scrape(self) -> list[Offer]:
         session = self._session_factory()
         try:
-            session.open("https://www.bouyguestelecom.fr/offres-internet")
+            session.open("https://www.bouyguestelecom.fr/forfaits-mobiles/avec-engagement?smartphone=true")
             offers: list[Offer] = []
             for index in (1, 2, 3):
+                base = f"(//div[@data-cy and starts-with(@data-cy,'plan-')])[{index}]"
                 prix_promo = session.text(
-                    f"//div[{index}]/section/div/div[1]/div[2]/div/p/span[1]"
+                    f"{base}//div[contains(@class,'price-container')]"
+                    "//span[contains(concat(' ', normalize-space(@class), ' '), ' price ') "
+                    "and not(contains(@class,'strike'))][1]"
                 )
                 debit = session.text(
-                    f"//div[{index}]/section/div/div[1]/div[1]/div/div[4]/div[1]/p/span"
+                    f"{base}//p[contains(@class,'title') and contains(@class,'is-level-2')][1]"
                 )
                 prix = session.text(
-                    f"//div[{index}]/section/div/div[1]/div[2]/div/p/span[3]/span[2]"
+                    f"{base}//div[contains(@class,'price-container')]"
+                    "//span[contains(concat(' ', normalize-space(@class), ' '), ' price ') "
+                    "and contains(@class,'strike')][1]"
                 )
                 offers.append(
                     Offer(
@@ -36,6 +41,7 @@ class BouyguesFibreScraper(BaseOfferScraper):
                         debit=debit,
                     )
                 )
+            print (offers)
             return offers
         finally:
             session.close()

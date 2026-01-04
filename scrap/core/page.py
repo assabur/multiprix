@@ -16,6 +16,9 @@ class PageSession(Protocol):
     def text(self, xpath: str) -> str:
         raise NotImplementedError
 
+    def attr(self, xpath: str, name: str) -> str | None:
+        raise NotImplementedError
+
     def close(self) -> None:
         raise NotImplementedError
 
@@ -39,6 +42,11 @@ class PlaywrightPageSession:
         if self._page is None:
             raise RuntimeError("page is not initialized; call open() first")
         return self._page.locator(f"xpath={xpath}").first.text_content()
+
+    def attr(self, xpath: str, name: str) -> str | None:
+        if self._page is None:
+            raise RuntimeError("page is not initialized; call open() first")
+        return self._page.locator(f"xpath={xpath}").first.get_attribute(name)
 
     def close(self) -> None:
         if self._context is not None:
